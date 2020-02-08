@@ -1,11 +1,15 @@
 import { Integration, VisitData } from './interfaces';
 
 export class PartnerIntegration implements Integration {
+    constructor() {
+        throw new Error('Not implemented.');
+    }
+
     getVisits(begin: any, end: any): Promise<VisitData[]> {
-        return Promise.resolve([]);
+        throw new Error('Not implemented.');
     }
 
     close(): Promise<void> {
-        return;
+        throw new Error('Not implemented.');
     }
 }
