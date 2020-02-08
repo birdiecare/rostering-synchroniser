@@ -18,6 +18,8 @@
     "@nestjs/common": "^6.0.0",
     "@nestjs/core": "^6.0.0",
     "@nestjs/platform-express": "^6.0.0",
+    "luxon": "^1.22.0",
+    "nestjs-console": "^2.1.0",
     "reflect-metadata": "^0.1.12",
     "rimraf": "^2.6.2",
     "rxjs": "^6.3.3"
@@ -36,7 +38,7 @@
     "tsc-watch": "2.2.1",
     "tsconfig-paths": "3.8.0",
     "tslint": "5.16.0",
-    "typescript": "3.4.3"
+    "typescript": "^3.7.5"
   },
   "jest": {
     "moduleFileExtensions": [
