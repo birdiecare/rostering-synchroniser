@@ -11,4 +11,4 @@ const run = async () => {
 }
 
 // tslint:disable-next-line: no-console
-run().then(console.log).catch(console.error);
+run().then(() => console.log('Done 👍')).catch(console.error);
