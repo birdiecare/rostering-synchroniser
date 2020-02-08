@@ -1,12 +1,10 @@
 import { Module } from '@nestjs/common';
 import { Synchroniser } from './synchroniser';
-import ApiVisitService from './api/visit-service';
-import APIService from './api/api-service';
-import AccessTokenStorage from './api/access-token-storage';
+import { ApiModule } from './api/module';
 
 @Module({
-  imports: [],
+  imports: [ApiModule],
   controllers: [],
-  providers: [AccessTokenStorage, APIService, ApiVisitService, Synchroniser],
+  providers: [Synchroniser],
 })
 export class AppModule {}
