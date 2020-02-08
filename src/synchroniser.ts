@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { DateTime } from 'luxon';
 
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { Integration, VisitData } from './interfaces';
 import ApiVisitService from './api/visit-service';
@@ -12,14 +12,13 @@ export class Synchroniser {
   constructor(
     @Inject(ApiVisitService)
     private readonly apiVisitService: ApiVisitService,
-    private readonly log: Logger,
   ) {}
 
   async synchronise(integration: Integration) {
-    this.log.log('Starting synchronisation');
+    console.log('Starting synchronisation');
 
     // Visits
-    this.log.log('Synchronising visits');
+    console.log('Synchronising visits');
     const start = DateTime.local().startOf('day');
     const end = DateTime.local()
       .endOf('day')
@@ -50,11 +49,11 @@ export class Synchroniser {
       await this.mergeOrCreateVisit(integration, existingVisits, visit);
     }
 
-    this.log.log(
+    console.log(
+      `Synchronised visits`,
       {
         number_of_visits: visits.length,
       },
-      `Synchronised visits`,
     );
 
     await integration.close();
