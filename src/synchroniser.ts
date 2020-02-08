@@ -46,7 +46,7 @@ export class Synchroniser {
     }
 
     for (const visit of visits) {
-      await this.mergeOrCreateVisit(integration, existingVisits, visit);
+      await this.mergeOrCreateVisit(existingVisits, visit);
     }
 
     console.log(
@@ -60,7 +60,6 @@ export class Synchroniser {
   }
 
   async mergeOrCreateVisit(
-    integration: Integration,
     existingVisits: Visit[],
     visit: VisitData,
   ) {
