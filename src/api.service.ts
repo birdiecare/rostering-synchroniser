@@ -25,7 +25,7 @@ export function sendTokenRequestByCredentials(
   });
 }
 
-@Injectable({ scope: Scope.TRANSIENT })
+@Injectable()
 export default class APIService {
   private axios: AxiosInstance;
 
