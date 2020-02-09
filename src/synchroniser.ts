@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { DateTime } from 'luxon';
 
-import { Inject, Injectable, Logger } from '@nestjs/common';
+import { Inject, Injectable } from '@nestjs/common';
 
 import { Integration, VisitData } from './interfaces';
 import ApiVisitService from './api/visit-service';
@@ -9,7 +9,6 @@ import { Visit } from './api/types';
 
 @Injectable()
 export class Synchroniser {
-  private readonly logger = new Logger('Synchroniser');
 
   constructor(
     @Inject(ApiVisitService)
