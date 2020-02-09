@@ -9,13 +9,13 @@ export interface TokenData {
 export default class AccessTokenStorage {
   private readonly tokenMap = new Map<string, TokenData>();
 
-  getToken(client_id: string): string | undefined {
-    const tokenData = this.tokenMap.get(client_id);
+  getToken(clientId: string): string | undefined {
+    const tokenData = this.tokenMap.get(clientId);
     if (!tokenData) {
       return;
     }
     if (new Date(tokenData.expires_at) < new Date()) {
-      this.tokenMap.delete(client_id);
+      this.tokenMap.delete(clientId);
       return;
     }
     return tokenData.access_token;

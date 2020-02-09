@@ -3,11 +3,7 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios';
 import { Injectable, Scope } from '@nestjs/common';
 
 import AccessTokenStorage from './access-token-storage';
-import {
-  getAPIBaseURL,
-  getClientSecret,
-  getClientId,
-} from './config';
+import { getAPIBaseURL, getClientSecret, getClientId } from './config';
 
 interface TokenData {
   access_token: string;
@@ -29,9 +25,7 @@ export function sendTokenRequestByCredentials(
 export default class APIService {
   private axios: AxiosInstance;
 
-  constructor(
-    private readonly accessTokenStorage: AccessTokenStorage,
-  ) {
+  constructor(private readonly accessTokenStorage: AccessTokenStorage) {
     this.axios = axios.create({ baseURL: getAPIBaseURL() });
   }
 
@@ -68,8 +62,8 @@ export default class APIService {
 
     let issueTokenResponse: { data: TokenData };
     issueTokenResponse = await sendTokenRequestByCredentials(
-        clientId,
-        clientSecret,
+      clientId,
+      clientSecret,
     );
 
     const { access_token, expires_at } = issueTokenResponse.data;

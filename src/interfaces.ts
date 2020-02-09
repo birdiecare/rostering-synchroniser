@@ -6,7 +6,7 @@ export interface VisitData {
   caregiverIds: string[];
   start_at: string;
   end_at: string;
-};
+}
 
 export interface Integration {
   getVisits(begin: DateTime, end: DateTime): Promise<VisitData[]>;

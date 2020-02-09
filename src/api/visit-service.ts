@@ -6,7 +6,6 @@ import APIService from './api-service';
 import { VisitData } from 'src/interfaces';
 import { Visit } from './types';
 
-
 @Injectable()
 export default class ApiVisitService {
   constructor(private readonly apiService: APIService) {
@@ -32,7 +31,7 @@ export default class ApiVisitService {
   }
 
   async getCareRecipientVisits(
-    care_recipient_id: string,
+    careRecipientId: string,
     timeRange: {
       from?: string;
       to?: string;
@@ -42,7 +41,7 @@ export default class ApiVisitService {
       method: 'GET',
       url: ``,
       params: {
-        care_recipient_id,
+        care_recipient_id: careRecipientId,
         ...(timeRange.from && { from: timeRange.from }),
         ...(timeRange.to && { to: timeRange.to }),
       },
@@ -69,9 +68,7 @@ export default class ApiVisitService {
     });
   }
 
-  async scheduleVisit(
-    visitData: VisitData,
-  ): Promise<Visit> {
+  async scheduleVisit(visitData: VisitData): Promise<Visit> {
     return await this.apiService.request<Visit>({
       method: 'POST',
       url: '',
@@ -86,9 +83,7 @@ export default class ApiVisitService {
     });
   }
 
-  async updateVisit(
-    visitData: VisitData,
-  ): Promise<Visit> {
+  async updateVisit(visitData: VisitData): Promise<Visit> {
     const { id: visitId, ...data } = visitData;
     return await this.apiService.request<Visit>({
       method: 'PUT',

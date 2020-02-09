@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import { DateTime } from 'luxon';
 
-import { Inject, Injectable } from '@nestjs/common';
+import { Inject, Injectable, Logger } from '@nestjs/common';
 
 import { Integration, VisitData } from './interfaces';
 import ApiVisitService from './api/visit-service';
@@ -9,16 +9,18 @@ import { Visit } from './api/types';
 
 @Injectable()
 export class Synchroniser {
+  private readonly logger = new Logger('Synchroniser');
+
   constructor(
     @Inject(ApiVisitService)
     private readonly apiVisitService: ApiVisitService,
   ) {}
 
   async synchronise(integration: Integration) {
-    console.log('Starting synchronisation');
+    this.logger.log('Starting synchronisation');
 
     // Visits
-    console.log('Synchronising visits');
+    this.logger.log('Synchronising visits');
     const start = DateTime.local().startOf('day');
     const end = DateTime.local()
       .endOf('day')
@@ -31,10 +33,7 @@ export class Synchroniser {
       );
     });
 
-    const existingVisits = await this.apiVisitService.getAll(
-      start,
-      end,
-    );
+    const existingVisits = await this.apiVisitService.getAll(start, end);
 
     const visitIds = visits.map(v => v.id);
     const visitsCancelled = existingVisits.filter(
@@ -49,20 +48,17 @@ export class Synchroniser {
       await this.mergeOrCreateVisit(existingVisits, visit);
     }
 
-    console.log(
-      `Synchronised visits`,
+    this.logger.log(
       {
         number_of_visits: visits.length,
       },
+      `Synchronised visits`,
     );
 
     await integration.close();
   }
 
-  async mergeOrCreateVisit(
-    existingVisits: Visit[],
-    visit: VisitData,
-  ) {
+  async mergeOrCreateVisit(existingVisits: Visit[], visit: VisitData) {
     const existingVisit = existingVisits.find(v => v.id === visit.id);
 
     if (!existingVisit) {
@@ -86,10 +82,7 @@ export class Synchroniser {
       links,
     );
     for (const id of removedCaregiverIds) {
-      await this.apiVisitService.removeCaregiverFromVisit(
-        visit.id,
-        id,
-      );
+      await this.apiVisitService.removeCaregiverFromVisit(visit.id, id);
     }
 
     const addedCaregiverIds = _.difference(

@@ -7,6 +7,6 @@ import APIService from './api-service';
   imports: [],
   controllers: [],
   providers: [AccessTokenStorage, APIService, ApiVisitService],
-  exports: [ApiVisitService]
+  exports: [ApiVisitService],
 })
 export class ApiModule {}
