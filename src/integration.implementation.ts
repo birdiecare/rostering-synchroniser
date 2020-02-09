@@ -1,3 +1,4 @@
+import { DateTime } from 'luxon';
 import { Integration, VisitData } from './interfaces';
 
 export class PartnerIntegration implements Integration {
@@ -5,7 +6,7 @@ export class PartnerIntegration implements Integration {
         throw new Error('Not implemented.');
     }
 
-    getVisits(begin: any, end: any): Promise<VisitData[]> {
+    getVisits(begin: DateTime, end: DateTime): Promise<VisitData[]> {
         throw new Error('Not implemented.');
     }
 
