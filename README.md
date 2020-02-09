@@ -20,6 +20,7 @@ You will need to implement the methods of [this class](./src/integration.impleme
 ## Running the synchronisation
 
 ```bash
+$ source .env
 $ npm run synchronise
 ```
 
