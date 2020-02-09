@@ -1,6 +1,6 @@
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+Module to synchronise your rotas with Birdie.
 
 ## Installation
 
@@ -25,5 +25,5 @@ $ npm run synchronise
 
 ## Stay in touch
 
-- Author - [Jérémy Gotteland](jeremy.gotteland@birdie.care)
+- Author - [Jérémy Gotteland](mailto:jeremy.gotteland@birdie.care)
 - Website - [https://birdie.care](https://birdie.care)
