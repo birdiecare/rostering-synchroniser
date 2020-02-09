@@ -15,7 +15,7 @@ Copy the `.env.default` file to a `.env` file and fill in the credentials provid
 
 ## Implement the rota fetching
 
-You will need to implement thee methods of [this class](./src/integration.implementation.ts) in order to fetch the rota that will be synchronised with Birdie.
+You will need to implement the methods of [this class](./src/integration.implementation.ts) in order to fetch the rota that will be synchronised with Birdie.
 
 ## Running the synchronisation
 
