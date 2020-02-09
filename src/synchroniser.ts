@@ -17,10 +17,10 @@ export class Synchroniser {
   ) {}
 
   async synchronise(integration: Integration) {
-    this.logger.log('Starting synchronisation');
+    console.log('Starting synchronisation');
 
     // Visits
-    this.logger.log('Synchronising visits');
+    console.log('Synchronising visits');
     const start = DateTime.local().startOf('day');
     const end = DateTime.local()
       .endOf('day')
@@ -44,15 +44,22 @@ export class Synchroniser {
       await this.apiVisitService.cancelVisit(visit.id);
     }
 
+    console.log(
+        `Cancelled visits`,
+        {
+          number_of_visits: visitsCancelled.length,
+        },
+      );
+
     for (const visit of visits) {
       await this.mergeOrCreateVisit(existingVisits, visit);
     }
 
-    this.logger.log(
+    console.log(
+      `Synchronised visits`,
       {
         number_of_visits: visits.length,
       },
-      `Synchronised visits`,
     );
 
     await integration.close();
